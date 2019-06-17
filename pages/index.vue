@@ -1,73 +1,47 @@
 <template>
   <div class="container">
     <div>
-      <logo />
-      <h1 class="title">
-        airplane
-      </h1>
-      <h2 class="subtitle">
-        My good Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
+      <h1>Air Seating Algorithm</h1>
+      <!-- <div v-for="(structure, index) in structures" :key="stucture">
+        <div v-for="row in structure[0]" :key="row">
+          <div v-for="col in structure[1]" :key="col">{{ lanes[index][starting] }}</div>
+        </div>
+      </div>-->
+      <Seats/>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import Seats from '~/components/Seats'
 
 export default {
   components: {
-    Logo
+    Logo,
+    Seats
+  },
+  data() {
+    return {
+      starting: 0,
+      structures: [[2, 3], [3, 4], [3, 2], [4, 3]],
+      lanes: [
+        [19, 25, 1, 21, 29, 7],
+        [2, 26, 27, 3, 8, 30, 'x', 9, 13, 'x', 'x', 14],
+        [4, 5, 10, 11, 15, 16],
+        [6, 28, 20, 12, 'x', 22, 17, 'x', 23, 18, 'x', 24]
+      ]
+    }
   }
 }
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
+<style lang="postcss">
 .container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  @apply max-w-5xl py-16 mx-auto;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+h1 {
+  @apply text-3xl font-semibold;
 }
 </style>
