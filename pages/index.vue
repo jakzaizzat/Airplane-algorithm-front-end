@@ -63,13 +63,11 @@ export default {
   data() {
     return {
       starting: 0,
-      structures: [[2, 3], [3, 4], [3, 2], [4, 3]],
-      lanes: [
-        [19, 25, 1, 21, 29, 7],
-        [2, 26, 27, 3, 8, 30, 'x', 9, 13, 'x', 'x', 14],
-        [4, 5, 10, 11, 15, 16],
-        [6, 28, 20, 12, 'x', 22, 17, 'x', 23, 18, 'x', 24]
-      ],
+      structures: {
+        counter: 0,
+        data: ''
+      },
+      lanes: [],
       form: {
         passengers: 0,
         array: ''
@@ -78,8 +76,22 @@ export default {
   },
   methods: {
     calculate() {
-      alert('dah tekan')
-      console.log(this.form)
+      this.structures.counter++
+      this.structures.data = JSON.parse(this.form.array.replace(/'/g, '"'))
+      this.$axios
+        .$post(`/`, this.form)
+        .then(res => {
+          console.log(res)
+          this.lanes = res
+
+          this.form = {
+            passengers: 0,
+            array: ''
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }

@@ -2,11 +2,11 @@
   <div class="seats">
     <div class="lane flex flex-wrap">
       <div
-        v-for="(structure, index) in structures"
-        :key="index"
+        v-for="(structure, index) in structures.data"
         class="flex-1 flex flex-col flex-wrap mx-2"
+        :key="structure"
       >
-        <div v-for="(row,i) in structure[0]" :key="row" class="flex justify-center">
+        <div v-for="row in structure[0]" :key="row" class="flex justify-center">
           <div class="bg-red-200 m-1" v-for="col in structure[1]" :key="col">
             <Seat>{{ getValue(index) }}</Seat>
           </div>
@@ -26,7 +26,7 @@ export default {
     },
     structures: {
       required: true,
-      type: Array
+      type: Object
     }
   },
   components: {
@@ -34,25 +34,18 @@ export default {
   },
   data() {
     return {
-      starting: 0,
-      currentLane: -1,
-      seats: []
+      starting: -1,
+      currentLane: -1
     }
   },
   methods: {
-    widthClass(column) {
-      //return column;
-      console.log(column)
-      return 'w-1/' + column
-    },
     getValue(index) {
       if (this.currentLane !== index) {
         this.currentLane = index
-        this.starting = 0
+        this.starting = -1
       }
-      var value = this.lanes[index][this.starting]
       this.starting++
-      return value
+      return this.lanes[index][this.starting]
     }
   }
 }
