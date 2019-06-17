@@ -6,7 +6,7 @@
         :key="index"
         class="flex-1 flex flex-col flex-wrap mx-2"
       >
-        <div v-for="(row,i) in structure[0]" :key="row" class="flex">
+        <div v-for="(row,i) in structure[0]" :key="row" class="flex justify-center">
           <div class="bg-red-200 m-1" v-for="col in structure[1]" :key="col">
             <Seat>{{ getValue(index) }}</Seat>
           </div>
@@ -19,6 +19,16 @@
 <script>
 import Seat from '~/components/Seat'
 export default {
+  props: {
+    lanes: {
+      required: true,
+      type: Array
+    },
+    structures: {
+      required: true,
+      type: Array
+    }
+  },
   components: {
     Seat
   },
@@ -26,14 +36,7 @@ export default {
     return {
       starting: 0,
       currentLane: -1,
-      seats: [],
-      structures: [[2, 3], [3, 4], [3, 2], [4, 3]],
-      lanes: [
-        [19, 25, 1, 21, 29, 7],
-        [2, 26, 27, 3, 8, 30, 'x', 9, 13, 'x', 'x', 14],
-        [4, 5, 10, 11, 15, 16],
-        [6, 28, 20, 12, 'x', 22, 17, 'x', 23, 18, 'x', 24]
-      ]
+      seats: []
     }
   },
   methods: {
@@ -61,6 +64,6 @@ export default {
 }
 
 .lane {
-  @apply bg-blue-200 py-3;
+  @apply bg-blue-200 w-full py-3;
 }
 </style>
