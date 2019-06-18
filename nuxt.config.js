@@ -40,7 +40,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://localhost:3001'
+    baseURL: 'https://agile-sea-38360.herokuapp.com/'
   },
   /*
    ** Build configuration
