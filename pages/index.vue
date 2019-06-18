@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container px-4">
     <div>
       <h1>Air Seating Algorithm</h1>
       <form class="mb-4" @submit.prevent="calculate">
@@ -45,7 +45,7 @@
         </button>
       </form>
       <div v-if="lanes.length>0">
-        <Seats :lanes="lanes" :structures="structures"/>
+        <Seats :lanes="lanes"/>
       </div>
     </div>
   </div>
@@ -84,10 +84,10 @@ export default {
           console.log(res)
           this.lanes = res
 
-          this.form = {
-            passengers: 0,
-            array: ''
-          }
+          // this.form = {
+          //   passengers: 0,
+          //   array: ''
+          // }
         })
         .catch(err => {
           console.log(err)
